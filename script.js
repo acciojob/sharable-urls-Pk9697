@@ -1,17 +1,23 @@
 // your code here
-const submitBtn=document.getElementById('submit-btn');
+const urlDefaultText='https://localhost:8080/';
+const form=document.getElementById('form');
 const url=document.getElementById('url');
-const name=document.getElementById('name');
-const year=document.getElementById('year');
+// const name=document.getElementById('name');
+// const year=document.getElementById('year');
 
-submitBtn.addEventListener('click',(e)=>{
+form.addEventListener('submit',(e)=>{
 	e.preventDefault();
-	if(name.value!==''){
+	const {name,year}=e.target
+	url.textContent=urlDefaultText;
+	if(name.value.trim()!==''){
 		url.textContent+=`?name=${name.value}`
-		if(year.value!==''){
+		if(year.value.trim()!==''){
 			url.textContent+=`&year=${year.value}`
 		}
-	}else if(year.value!==''){
+	}else if(year.value.trim()!==''){
 		url.textContent+=`?year=${year.value}`
 	}
+
+	name.value = "";
+    year.value = "";
 })
